@@ -1,0 +1,6 @@
+framework module CRPinCodeControl {
+  umbrella header "CRPinCodeControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

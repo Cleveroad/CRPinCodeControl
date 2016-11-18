@@ -1,0 +1,16 @@
+PODS:
+  - CRPinCodeControl (0.1.0)
+
+DEPENDENCIES:
+  - CRPinCodeControl (from `../`)
+
+EXTERNAL SOURCES:
+  CRPinCodeControl:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CRPinCodeControl: 144d59bd6633acff670cc264201512a342ee02dc
+
+PODFILE CHECKSUM: ccb5f30c89e350e7e9d6894a452cd83d60334ac8
+
+COCOAPODS: 1.1.0.rc.2
