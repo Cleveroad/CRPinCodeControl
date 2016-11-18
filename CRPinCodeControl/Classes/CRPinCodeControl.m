@@ -231,6 +231,8 @@
 }
 
 - (void) openAnimation {
+    self.headerLabel.text = @"Accepted!";
+    self.headerLabel.textColor = [UIColor colorWithRed:0.38 green:0.79 blue:0.36 alpha:1.0];
     NSBundle *bundles = [NSBundle bundleForClass:[CRPinCodeControl class]];
     if (self.isWritePassword != YES) {
         for (UIView *view in self.imageViewPasswordArray) {
@@ -267,7 +269,7 @@
 }
 
 - (void) closeControl {
-    [UIView animateKeyframesWithDuration:0.5 delay:0.5 options:nil animations:^{
+    [UIView animateKeyframesWithDuration:0.5 delay:1 options:nil animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
