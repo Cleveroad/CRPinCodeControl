@@ -35,10 +35,10 @@
     [super drawRect:rect];
     
     NSBundle *bundles = [NSBundle bundleForClass:[CRPinCodeControl class]];
-    [self.arcImageView setImage:[UIImage imageWithContentsOfFile:[bundles pathForResource:@"arc" ofType:@"png"]]];
+    [self.arcImageView setImage:[UIImage imageNamed:@"arc" inBundle:bundles compatibleWithTraitCollection:nil]];
     self.arcImageView.contentMode = UIViewContentModeCenter;
-    [self.centerOfLockImageView setImage:[UIImage imageWithContentsOfFile:[bundles pathForResource:@"firstcenterOfLock" ofType:@"png"]]];
-    [self.mainPathOfLock setImage:[UIImage imageWithContentsOfFile:[bundles pathForResource:@"mainPathOfLock" ofType:@"png"]]];
+    [self.centerOfLockImageView setImage:[UIImage imageNamed:@"firstcenterOfLock" inBundle:bundles compatibleWithTraitCollection:nil]];
+    [self.mainPathOfLock setImage:[UIImage imageNamed:@"mainPathOfLock" inBundle:bundles compatibleWithTraitCollection:nil]];
     self.isCustomAnimation = ([self.delegate respondsToSelector:@selector(incorrectPasswordAnimations)] && [self.delegate respondsToSelector:@selector(correctPasswordAnimations)]);
     if (self.isCustomAnimation) {
         self.defaultAnimationView.hidden = YES;
@@ -74,7 +74,7 @@
     }
     self.countOfImputPassword = 0;
     
-    [self.deleteButton setImage:[[UIImage imageWithContentsOfFile:[bundles pathForResource:@"delete" ofType:@"png"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[[UIImage imageNamed:@"delete" inBundle:bundles compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [self.deleteButton setTintColor:self.mainColorScheme];
     self.centerOfLockImageView.layer.zPosition = 1000;
     [self createStars];
@@ -88,7 +88,7 @@
     self.spacingConstraints = [NSMutableArray new];
     self.imageViewPasswordArray = [NSMutableArray new];
     for (int i = 0; i < self.countOfNumberInPassword; i++) {
-        UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[bundles pathForResource:@"shape" ofType:@"png"]]];
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shape" inBundle:bundles compatibleWithTraitCollection:nil]];
         imageView.image = [imageView.image  imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         imageView.tintColor = self.mainColorScheme;
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -221,7 +221,7 @@
         self.centerOfLockImageView.layer.transform = rotationAndPerspectiveTransform;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.15 animations:^{
-            self.centerOfLockImageView.image = [UIImage imageWithContentsOfFile:[bundles pathForResource:@"firstcenterOfLock" ofType:@"png"]];
+            self.centerOfLockImageView.image = [UIImage imageNamed:@"firstcenterOfLock" inBundle:bundles compatibleWithTraitCollection:nil];
             CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
             rotationAndPerspectiveTransform.m34 = 1.0 / -500;
             rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 0, 0.0f, 1.0f, 0.0f);
@@ -246,7 +246,7 @@
                 self.centerOfLockImageView.layer.transform = rotationAndPerspectiveTransform;
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.15 animations:^{
-                    self.centerOfLockImageView.image = [UIImage imageWithContentsOfFile:[bundles pathForResource:@"openCenterOfLock" ofType:@"png"]];
+                    self.centerOfLockImageView.image = [UIImage imageNamed:@"openCenterOfLock" inBundle:bundles compatibleWithTraitCollection:nil];
                     CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
                     rotationAndPerspectiveTransform.m34 = 1.0 / -500;
                     rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 0, 0.0f, 1.0f, 0.0f);
@@ -267,10 +267,11 @@
 }
 
 - (void) closeControl {
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateKeyframesWithDuration:0.5 delay:0.5 options:nil animations:^{
         self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
     }];
-    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.5];
 }
 
 - (void) errorAnimation {
@@ -288,7 +289,7 @@
             self.centerOfLockImageView.layer.transform = rotationAndPerspectiveTransform;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.15 animations:^{
-                self.centerOfLockImageView.image = [UIImage imageWithContentsOfFile:[bundles pathForResource:@"closeCenterOfLock" ofType:@"png"]];
+                self.centerOfLockImageView.image = [UIImage imageNamed:@"closeCenterOfLock" inBundle:bundles compatibleWithTraitCollection:nil];
                 CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
                 rotationAndPerspectiveTransform.m34 = 1.0 / -500;
                 rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 0, 0.0f, 1.0f, 0.0f);
